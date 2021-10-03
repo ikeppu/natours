@@ -42,6 +42,17 @@ exports.signup = catchAsync(async (req, res, next) => {
   createSendToken(newUser, 201, res);
 });
 
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    path: '/',
+  });
+  res.status(200).json({ status: 'success' });
+};
+
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
   //$ 1) Check if email and password exist

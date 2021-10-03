@@ -12,18 +12,19 @@ const signToken = (id) => {
   });
 };
 
-const createSendToken = (user, statusCode, req, res) => {
+const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
-
-  res.cookie('jwt', token, {
+  const cookieOptions = {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
     httpOnly: true,
-    secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
-  });
-
-  // Remove password from output
+    secure: true,
+    sameSite: 'none',
+    path: '/',
+  };
+  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
   user.password = undefined;
 
+  res.cookie('jwt', token, cookieOptions);
   res.status(statusCode).json({
     status: 'success',
     token,

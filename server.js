@@ -32,7 +32,7 @@ app.listen(port, () => {
 process.on('unhandledRejection', (err) => {
   console.log(err.name, err.message);
   console.log('UNHANDLER REJECTION!');
-  server.close(() => {
+  app.close(() => {
     process.exit(1);
   });
 });

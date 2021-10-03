@@ -23,7 +23,6 @@ moongose
   .then((connection) => {
     console.log(`You successfully conection to DB`);
   });
-// .catch((err) => console.log(`ERROR`));
 
 const port = process.env.PORT || 300;
 app.listen(port, () => {

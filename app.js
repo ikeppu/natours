@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const cors = require('cors');
 
 const AppError = require('./utils/AppError');
@@ -55,6 +56,7 @@ app.use(
 );
 
 app.use(express.static(`${__dirname}/public`));
+app.use(compression());
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

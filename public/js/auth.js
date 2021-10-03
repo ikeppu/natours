@@ -3,7 +3,7 @@ import { showAlert } from './alert';
 
 export const login = async (email, password) => {
   try {
-    const res = await axios('http://localhost:3000/api/v1/users/login', {
+    const res = await axios('/api/v1/users/login', {
       method: 'POST',
       withCredentials: true,
       credentials: 'include',
@@ -20,14 +20,13 @@ export const login = async (email, password) => {
       }, 1000);
     }
   } catch (error) {
-    console.log(error);
     showAlert('error', error.response.data.message);
   }
 };
 
 export const register = async (email, name, password, passwordConfirm) => {
   try {
-    const res = await axios('http://localhost:3000/api/v1/users/signup', {
+    const res = await axios('/api/v1/users/signup', {
       method: 'POST',
       withCredentials: true,
       credentials: 'include',
@@ -46,7 +45,6 @@ export const register = async (email, name, password, passwordConfirm) => {
       }, 1000);
     }
   } catch (error) {
-    console.log(error);
     showAlert('error', error.response.data.message);
   }
 };

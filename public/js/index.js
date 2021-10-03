@@ -14,7 +14,8 @@ import { bookTour } from './stripe';
 if (logoutBtn) {
   logoutBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    document.cookie = `jwt=; path=/; max-age=0`;
+    document.cookie = `jwt=; path=/; max-age=0 domain=${location.host}`;
+    console.log(`Remove`);
     window.setTimeout(() => {
       location.reload(true);
     }, 1000);

@@ -24,7 +24,7 @@ moongose
     console.log(`You successfully conection to DB`);
   });
 
-const port = process.env.PORT || 300;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App runing on port ${port}`);
 });

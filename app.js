@@ -20,7 +20,7 @@ const bookingRouter = require('./routes/bookingRoutes');
 const viewRouter = require('./routes/viewRouter');
 
 const app = express();
-
+app.enable('trust proxy');
 app.use(cors({ origin: true, credentials: true }));
 
 app.set('view engine', 'pug');

@@ -7,18 +7,14 @@ const bookBtn = document.querySelector(`#book-tour`);
 
 const logoutBtn = document.querySelector(`.nav__el--logout `);
 
-import { login, register } from './auth';
+import { login, register, logout } from './auth';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
 
 if (logoutBtn) {
   logoutBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    document.cookie = `jwt=loggedout; expires=${new Date(Date.now() + 10 * 1000)}; max-age=0 domain=${location.host}`;
-    console.log(`Remove second`);
-    window.setTimeout(() => {
-      location.reload(true);
-    }, 1000);
+    logout();
   });
 }
 
